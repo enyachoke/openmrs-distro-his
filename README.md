@@ -2,8 +2,26 @@
 
 A sample software distribution that demonstrates how integration of OpenMRS with external systems can be achieved.
 
+## Try it online
 
-## Available commands
+OpenMRS Distro HIS is deployed on a development server at dev-his.openmrs.org. Each app can be accessed via its own subdomain:
+
+|App|URL|Credentials|
+|:----|:----|:----|
+OpenMRS (EMR) | https://emr.dev-his.openmrs.org | admin / Admin123
+Odoo (ERP) | https://erp.dev-his.openmrs.org | admin / admin
+SENAITE (LIMS) | https://lims.dev-his.openmrs.org/ | admin / password
+
+## Try it locally
+
+### code
+
+```
+git clone https://github.com/openmrs/openmrs-distro-his
+cd openmrs-distro-his/
+```
+
+### Available commands
 
 |Goal|Command|Explanation|
 |:----|:----|:----|

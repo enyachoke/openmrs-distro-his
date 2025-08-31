@@ -18,6 +18,10 @@
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
     <docker.push.registry.username>openmrs</docker.push.registry.username>
+
+    <!-- Bundled Docker overrides -->
+    <bundled.docker.compose.output.filename>docker-compose.yml</bundled.docker.compose.output.filename>
+    <bundled.docker.compose.sso.enabled>true</bundled.docker.compose.sso.enabled>
   </properties>
 
   <dependencies>
@@ -53,7 +57,32 @@
                   <directory>${project.build.directory}/ozone</directory>
                   <excludes>
                     <exclude>distro/configs/openmrs/frontend_config/ozone_logo*.svg</exclude>
+                    <exclude>distro/configs/openmrs/initializer_config/globalproperties/**/disable-demo-patients.xml</exclude>
                   </excludes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+
+          <execution>
+            <!-- Copy over the content-packages.txt file -->
+            <id>Copy content-packages.txt</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>
+                ${project.build.directory}/scripts/openmrs/
+              </outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/scripts</directory>
+                  <includes>
+                    <include>content-packages.txt</include>
+                  </includes>
+                  <filtering>false</filtering>
                 </resource>
               </resources>
             </configuration>
@@ -100,6 +129,24 @@
                   <excludes>
                     <exclude>.gitkeep</exclude>
                   </excludes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <!-- Copy binaries folder -->
+            <id>Copy binaries folder</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>
+                ${project.build.directory}/${project.artifactId}-${project.version}/distro/binaries</outputDirectory>
+              <overwrite>true</overwrite>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/binaries</directory>
                 </resource>
               </resources>
             </configuration>

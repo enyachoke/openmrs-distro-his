@@ -1,9 +1,0 @@
-services:
-
-  frontend:
-    environment:
-      SPA_CONFIG_URLS: /openmrs/spa/ozone/config.json
-
-  env-substitution:
-    environment:
-      - ODOO_PUBLIC_URL=http://${ODOO_HOSTNAME}
