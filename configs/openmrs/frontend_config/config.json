@@ -3,7 +3,11 @@
     "externalRefLinks": [
       {
         "title": "Pharmacy, Billing & Inventory",
-        "redirect": "${ERPNEXT_PUBLIC_URL}"
+        "redirect": "${ODOO_PUBLIC_URL}"
+      },
+      {
+        "title": "Laboratory",
+        "redirect": "${SENAITE_PUBLIC_URL}"
       }
     ]
   }
